@@ -18,14 +18,14 @@ No test runner is configured yet.
 
 - **Next.js 16 (App Router)** with React 19. Routes live in `src/app/`. `next.config.ts` enables `cacheComponents` and `partialPrefetching`, so caching and prefetch behaviour differs from older Next.js versions. Check `node_modules/next/dist/docs/` before using Next APIs (see AGENTS.md above).
 - **Tailwind CSS v4**, configured CSS-first in `src/app/globals.css` (`@import "tailwindcss"` + `@theme inline`). There is no `tailwind.config.js`. Styles are loaded through the `@tailwindcss/turbopack` loader set in `next.config.ts`.
-- **Gemini** via `@google/genai`. The API key and model name come from `GEMINI_API_KEY` and `GEMINI_MODEL` (default `gemini-2.5-flash`) in `.env.local`.
+- **Groq** via `groq-sdk`. The API key and model name come from `GROQ_API_KEY` and `GROQ_MODEL` (default `llama-3.3-70b-versatile`) in `.env.local`. If `GROQ_API_KEY` is missing or `DEMO_MODE=true`, `analyzeMatch` in `src/lib/ai.ts` returns a sample result instead of calling Groq.
 - **Zod** (v4) for runtime validation.
 - Import alias `@/*` → `src/*`.
 
 ## Project rules
 
 - This is an AI Job Analyzer + Tracker built with Next.js App Router, TypeScript strict mode and Tailwind CSS.
-- All AI calls happen server-side in API routes or server actions; never call Gemini from the browser.
+- All AI calls happen server-side in API routes or server actions; never call Groq from the browser.
 - Validate all request bodies and all AI output with Zod.
 - Components live in `src/components` and stay small and focused.
 - Every form field has a visible label, and every async action has loading and error states.
